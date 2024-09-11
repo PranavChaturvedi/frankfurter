@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name="frankfurter",
-    version="1.0.0",
+    version="1.0.1",
     description="A lightweight wrapper for the frankfurter API",
     long_description=pathlib.Path("README.md").read_text(encoding='utf-8'),
     long_description_content_type="text/markdown",
@@ -25,12 +25,10 @@ setuptools.setup(
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.6",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Utilities",
     ],
-    python_requires=">=3.6",
+    python_requires=">=3.8",
     packages=setuptools.find_packages(),
     include_package_data=True
 )

@@ -6,7 +6,7 @@ class FrankfurterCallFailedException(Exception):
         super().__init__(*args)
         self.reason = response.get("reason", REASON_NOT_FOUND)
         raise Exception(
-            f"Frankfurter API call has failed. \nStatusCdde : {response.get("statusCode")} \nReason : {self.reason}"
+            f'Frankfurter API call has failed. \nStatusCode : {response.get("statusCode")} \nReason : {self.reason}'
         )
 
 
