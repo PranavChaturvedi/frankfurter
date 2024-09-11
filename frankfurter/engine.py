@@ -3,10 +3,9 @@ from .utils import BASE_URL, BASE_HEADERS
 from urllib.request import Request, urlopen
 from urllib.parse import urlencode
 from urllib.error import HTTPError
-from http import HTTPMethod
 from .exceptions import FrankfurterCallFailedException, UnknownCurrencyException
 import json
-from functools import cache
+from functools import lru_cache
 
 
 class FrankfurterEngine:
@@ -25,7 +24,7 @@ class FrankfurterEngine:
         path_params = "/".join(path_params)
         request = Request(
             url=f"https://{self.__base_url}/{path_params}?{params_str}",
-            method=HTTPMethod.GET,
+            method="GET",
             headers={**self.__base_headers, **extra_headers},
         )
         try:
@@ -88,7 +87,7 @@ class FrankfurterEngine:
         query_params = {"from": base, "to": to}
         if not start_date:
             return self.fetch_latest_data(base, to)
-        path_params = f"{start_date}..{end_date or ""}"
+        path_params = f'{start_date}..{end_date or ""}'
         return self.__api_call(query_params=query_params, path_params=[path_params])
 
     def fetch_data_for_date(self, date: str, base: str = None, to: str = None) -> dict:
@@ -110,7 +109,7 @@ class FrankfurterEngine:
         query_params = {"from": base, "to": to}
         return self.__api_call(query_params=query_params, path_params=[date])
 
-    @cache
+    @lru_cache
     def fetch_currencies(self):
         """
         Fetches the list of supported currencies.
@@ -145,5 +144,5 @@ class FrankfurterEngine:
             return amount * exchange_rate
         else:
             raise FrankfurterCallFailedException(
-                f"No exchange rate found for {base} to {to}."
+                {"statusCode" : 404, "reason" : f'No exchange rate found for {base} to {to}.'}
             )
