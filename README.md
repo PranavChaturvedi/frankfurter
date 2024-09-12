@@ -1,6 +1,10 @@
 # frankfurter - Unofficial Lightweight Wrapper for the frankfurter API
 
 
+[![Downloads](https://static.pepy.tech/badge/frankfurter)](https://pepy.tech/project/frankfurter)
+[![PyPI](https://badge.fury.io/py/frankfurter.svg)](https://pypi.org/project/frankfurter/)
+
+
 The Frankfurter API tracks foreign exchange references rates published by the [European Central Bank](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html). The data refreshes around 16:00 CET every working day.
 
 
